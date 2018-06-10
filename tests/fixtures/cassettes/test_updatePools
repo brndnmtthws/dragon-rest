@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: Pool1=stratum%2Btcp%3A%2F%2Fus-east.stratum.slushpool.com%3A3333&UserName1=brndnmtthws.dragon-0ade5&Password1=x&Pool2=stratum%2Btcp%3A%2F%2Fpool.ckpool.org%3A3333&UserName2=3GWdXx9dfLPvSe7d8UnxjnDnSAJodTTbrt.dragon-0ade5&Password2=x
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEcmFnb25NaW50IiwiaWF0IjoxNTI4NjQzOTYwLCJleHAiOjE1Mjg2NjU1NjAsInVzZXIiOiJhZG1pbiJ9.rm9Ll81v5pVmlHQCEyFqoeb6TnJSqH66lM1-izK_NoQ]
+      Connection: [keep-alive]
+      Content-Length: ['232']
+      Content-Type: [application/x-www-form-urlencoded]
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: http://10.1.0.25/api/pools
+  response:
+    body: {string: '{"success":true,"pools":[{"url":"stratum+tcp://us-east.stratum.slushpool.com:3333","user":"brndnmtthws.dragon-0ade5","pass":"x"},{"url":"stratum+tcp://pool.ckpool.org:3333","user":"3GWdXx9dfLPvSe7d8UnxjnDnSAJodTTbrt.dragon-0ade5","pass":"x"}]}'}
+    headers:
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Sun, 10 Jun 2018 15:34:09 GMT']
+      Server: [nginx/1.12.2]
+      X-Powered-By: [PHP/7.2.4]
+    status: {code: 200, message: OK}
+version: 1

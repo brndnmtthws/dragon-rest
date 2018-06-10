@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEcmFnb25NaW50IiwiaWF0IjoxNTI4NjQzOTYwLCJleHAiOjE1Mjg2NjU1NjAsInVzZXIiOiJhZG1pbiJ9.rm9Ll81v5pVmlHQCEyFqoeb6TnJSqH66lM1-izK_NoQ]
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: http://10.1.0.25/api/overview
+  response:
+    body: {string: '{"success":true,"type":"T1","hardware":{"status":"15:26:22 up
+        19:14,  load average: 0.04, 0.07, 0.07","memUsed":69048,"memFree":181516,"memTotal":250564,"cacheUsed":42956,"cacheFree":202584,"cacheTotal":245540},"network":{"dhcp":"dhcp","ipaddress":"10.1.0.25","netmask":"255.255.252.0","gateway":"10.1.0.1","dns1":"10.1.0.1","dns2":""},"version":{"hwver":"g19","ethaddr":"a0:b0:45:00:ad:e5","build_date":"15th
+        of May 2018 06:08 AM","platform_v":"t1_20180515_060842"}}'}
+    headers:
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Sun, 10 Jun 2018 15:26:23 GMT']
+      Server: [nginx/1.12.2]
+      X-Powered-By: [PHP/7.2.4]
+    status: {code: 200, message: OK}
+version: 1
