@@ -1,27 +1,30 @@
 sudo: false
 language: python
 python:
-  - "3.6"
+- '3.6'
 deploy:
   provider: pypi
-  user: "brndnmtthws"
+  user: brndnmtthws
   on:
     tags: true
+  password:
+  secure: "gNt+jzprMnfuHkV6wEbUmTMlKFpxiJ4uQHXgFWM6UMI3cFDmkwuT/yPV4jeM5LRzoV7ZMhJMHFfHCuK+CGBa0Et3TKu/aiFjLiVzDQrH4Ch9gfZoSJ1gYvXCQO4POoi8mZi6f9po+c39EVOP4icm2Ifxtan9pYLc+BCCVNF1ZZ00nxbN07R7levykNCS9ZJ8BOxazle8y2qMpN5m4yWrJgPpHgOFKSnVO1x6i5takl43o+skWg+0PNc0P6iLbKblqsKEfCYedZRVMGsJ/eJnLCGCAOcVotDt4mCZJhAXgsdXiCxHFWuTyY9yb1yLFvSO2Xg62Na0Y7fvEPojCX8cCyug04RZFFJVByQ5i+oKqYkPpzNYdngrbmluK//kgvFjSJSFNahzQ0NnEQGpkZrmYDD/kCIE574x3JJw+xExe96h42f0VBMqCPKOnONm5br/xIn1VFqTSq0IWcBn2EmXL9X6r841tN3btc31vMLqpoTXeOWpcbQdTon+xT03q/P92ik20xxeamqdj1fzMdvS+C9wUVYnPVXadL9/dHwnuzBPlqb3eqPtCddVdfMNcwrYKsY3TnKkS80TGI6UY+xHcisFraWgeTfC+T/x9OLPObk72FtY0QuGS2xGzOowhTw8HwBWnRlm6jvenc5BHnIWq8LagMxZIOOHx6TG5MduNcE="
 env:
   global:
-    - CC_TEST_REPORTER_ID=c374ef9c1b0a01c90e2f60d4aef23be79e48692486706dce16e14e65c1d22b15
+  - CC_TEST_REPORTER_ID=c374ef9c1b0a01c90e2f60d4aef23be79e48692486706dce16e14e65c1d22b15
 install:
-  - pip install -r requirements.txt
-  - pip install -r test-requirements.txt
+- pip install -r requirements.txt
+- pip install -r test-requirements.txt
 before_script:
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
+- curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
+  > ./cc-test-reporter
+- chmod +x ./cc-test-reporter
+- "./cc-test-reporter before-build"
 script:
-  - py.test --cov=dragon_rest --cov-report xml
+- py.test --cov=dragon_rest --cov-report xml
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+- "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
 branches:
   only:
-    - master
+  - master
 cache: pip
