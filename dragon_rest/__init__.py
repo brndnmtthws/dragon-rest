@@ -1,1 +1,1 @@
-name = "dragon_rest"
+name = "dragon-rest"
