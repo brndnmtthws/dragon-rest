@@ -6,7 +6,7 @@ Python wrapper for DragonMint T1 REST API
 
 ### Install pip package
 ```
-$ pip install dragon_rest
+$ pip install dragon-rest
 ```
 
 ### Write the Python codes
