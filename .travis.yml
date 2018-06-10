@@ -1,0 +1,25 @@
+sudo: false
+language: python
+python:
+  - "3.6"
+deploy:
+  provider: pypi
+  user: "brndnmtthws"
+  on:
+    tags: true
+env:
+  global:
+    - CC_TEST_REPORTER_ID=c374ef9c1b0a01c90e2f60d4aef23be79e48692486706dce16e14e65c1d22b15
+install:
+  - pip install -r requirements.txt
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+script:
+  - py.test --cov=dragon_rest --cov-report xml
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+branches:
+  only:
+    - master
