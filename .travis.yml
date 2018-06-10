@@ -24,7 +24,4 @@ script:
 - py.test --cov=dragon_rest --cov-report xml
 after_script:
 - "./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT"
-branches:
-  only:
-  - master
 cache: pip
