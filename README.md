@@ -22,3 +22,7 @@ r = api.summary()
 print(r)
 # now you're in the big leagues, boye
 ```
+
+## Reference
+
+For details on the API, see: https://halongmining.com/api/
