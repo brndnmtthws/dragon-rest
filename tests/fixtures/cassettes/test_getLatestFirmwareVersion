@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept: ['*/*']
+      Accept-Encoding: ['gzip, deflate']
+      Authorization: [Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEcmFnb25NaW50IiwiaWF0IjoxNTI4NjQzOTYwLCJleHAiOjE1Mjg2NjU1NjAsInVzZXIiOiJhZG1pbiJ9.rm9Ll81v5pVmlHQCEyFqoeb6TnJSqH66lM1-izK_NoQ]
+      Connection: [keep-alive]
+      Content-Length: ['0']
+      User-Agent: [python-requests/2.18.4]
+    method: POST
+    uri: http://10.1.0.25/api/getLatestFirmwareVersion
+  response:
+    body: {string: '{"success":true,"version":"t1_20180515_060842","versionDate":"15th
+        of May 2018 06:08 AM","url":"https:\/\/download.halongmining.com\/files\/t1\/t1_20180515_060842.swu","info":"important","currentVersion":"t1_20180515_060842","currentVersionDate":"15th
+        of May 2018 06:08 AM","isUpdated":true}'}
+    headers:
+      Connection: [keep-alive]
+      Content-Type: [application/json]
+      Date: ['Sun, 10 Jun 2018 18:09:19 GMT']
+      Server: [nginx/1.12.2]
+      X-Powered-By: [PHP/7.2.4]
+    status: {code: 200, message: OK}
+version: 1

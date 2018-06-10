@@ -1,4 +1,5 @@
 import requests
+import json
 from urllib import parse
 
 
@@ -26,6 +27,14 @@ class DragonAPI(object):
         response.raise_for_status()
         return response.json()
 
+    def get(self, path):
+        response = requests.post(
+            parse.urljoin(self.base_url, path),
+            headers={'Authorization': 'Bearer ' + self.jwt},
+            timeout=self.timeout)
+        response.raise_for_status()
+        return response.body
+
     def auth(self):
         response = requests.post(
             parse.urljoin(self.base_url, '/api/auth'),
@@ -46,16 +55,15 @@ class DragonAPI(object):
         return self.post('/api/pools')
 
     def updatePools(self,
-                    pool1=None,
-                    username1=None,
-                    password1=None,
+                    pool1,
+                    username1,
+                    password1,
                     pool2=None,
                     username2=None,
                     password2=None,
                     pool3=None,
                     username3=None,
-                    password3=None
-                    ):
+                    password3=None):
         return self.post('/api/pools',
                          data={
                              'Pool1': pool1,
@@ -69,14 +77,34 @@ class DragonAPI(object):
                              'Password3': password3,
                          })
 
-    def updatePassword(self):
-        return self.post('/api/updatePassword')
+    def updatePassword(self,
+                       user,
+                       currentPassword,
+                       newPassword):
+        return self.post('/api/updatePassword',
+                         data={
+                             'user': user,
+                             'currentPassword': currentPassword,
+                             'newPassword': newPassword
+                         })
 
     def network(self):
         return self.post('/api/network')
 
-    def updateNetwork(self):
-        return self.post('/api/updateNetwork')
+    def updateNetwork(self,
+                      dhcp='dhcp',
+                      ipaddress=None,
+                      netmask=None,
+                      gateway=None,
+                      dns=None):
+        return self.post('/api/updateNetwork',
+                         data={
+                             'dhcp': dhcp,
+                             'ipaddress': ipaddress,
+                             'netmask': netmask,
+                             'gateway': gateway,
+                             'dns': json.dumps(dns)
+                         })
 
     def type(self):
         return self.post('/api/type')
@@ -99,17 +127,16 @@ class DragonAPI(object):
     def getAutoTuneStatus(self):
         return self.post('/api/getAutoTuneStatus')
 
-    def setAutoTune(self):
-        return self.post('/api/setAutoTune')
+    def setAutoTune(self, autotune):
+        return self.post('/api/setAutoTune',
+                         data={'autotune': autotune})
 
-    def upgradeDownload(self):
-        return self.post('/upgrade/download')
+    def upgradeDownload(self, url):
+        return self.post('/upgrade/download',
+                         data={'url': url})
 
     def getLatestFirmwareVersion(self):
         return self.post('/api/getLatestFirmwareVersion')
 
     def getDebugStats(self):
         return self.post('/api/getDebugStats')
-
-    def streamLogs(self):
-        return self.get('/stream/logs')

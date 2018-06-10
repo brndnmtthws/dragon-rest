@@ -29,8 +29,8 @@ def test_summary(host, jwt):
     api = DragonAPI(host, jwt=jwt)
     r = api.summary()
 
-    assert api.jwt is not None
     assert r['success']
+    assert len(r['DEVS']) == 3
 
 
 @vcr.use_cassette()
@@ -38,8 +38,8 @@ def test_overview(host, jwt):
     api = DragonAPI(host, jwt=jwt)
     r = api.overview()
 
-    assert api.jwt is not None
     assert r['success']
+    assert r['type'] == 'T1'
 
 
 @vcr.use_cassette()
@@ -47,8 +47,8 @@ def test_pools(host, jwt):
     api = DragonAPI(host, jwt=jwt)
     r = api.pools()
 
-    assert api.jwt is not None
     assert r['success']
+    assert len(r['pools']) == 2
 
 
 @vcr.use_cassette()
@@ -66,5 +66,82 @@ def test_updatePools(host, jwt):
         password3=None
     )
 
-    assert api.jwt is not None
+    assert r['success']
+
+
+@vcr.use_cassette()
+def test_updatePassword(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.updatePassword('admin', 'dragonadmin', 'loladmin')
+    assert r['success']
+    r = api.updatePassword('admin', 'loladmin', 'dragonadmin')
+
+    assert r['success']
+
+
+@vcr.use_cassette()
+def test_network(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.network()
+
+    assert r['success']
+    assert r['dhcp'] == 'dhcp'
+
+
+@vcr.use_cassette()
+def test_updateNetwork(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.updateNetwork(dhcp='dhcp')
+
+    assert r['success']
+
+
+@vcr.use_cassette()
+def test_type(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.type()
+
+    assert r['success']
+    assert r['type'] == 'T1'
+
+
+@vcr.use_cassette()
+def test_getAutoTune(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.getAutoTune()
+
+    assert r['success']
+    assert r['autoTuneMode'] == 'efficient'
+
+
+@vcr.use_cassette()
+def test_getAutoTuneStatus(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.getAutoTuneStatus()
+
+    assert r['success']
+    assert r['mode'] == 'efficient'
+
+
+@vcr.use_cassette()
+def test_getAutoTune(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.setAutoTune('efficient')
+
+    assert r['success']
+
+
+@vcr.use_cassette()
+def test_getLatestFirmwareVersion(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.getLatestFirmwareVersion()
+
+    assert r['success']
+
+
+@vcr.use_cassette()
+def test_getDebugStats(host, jwt):
+    api = DragonAPI(host, jwt=jwt)
+    r = api.getDebugStats()
+
     assert r['success']
