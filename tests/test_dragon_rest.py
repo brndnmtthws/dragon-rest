@@ -145,3 +145,12 @@ def test_getDebugStats(host, jwt):
     r = api.getDebugStats()
 
     assert r['success']
+
+
+# This works, but VCR doesn't work with streams
+# @vcr.use_cassette()
+# def test_streamLogs(host, jwt):
+#     api = DragonAPI(host, jwt=jwt)
+#     r = api.streamLogs()
+#     for line in r.iter_lines():
+#         print(line)

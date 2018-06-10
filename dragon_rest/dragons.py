@@ -27,13 +27,14 @@ class DragonAPI(object):
         response.raise_for_status()
         return response.json()
 
-    def get(self, path):
-        response = requests.post(
+    def get_stream(self, path):
+        response = requests.get(
             parse.urljoin(self.base_url, path),
             headers={'Authorization': 'Bearer ' + self.jwt},
+            stream=True,
             timeout=self.timeout)
         response.raise_for_status()
-        return response.body
+        return response
 
     def auth(self):
         response = requests.post(
@@ -140,3 +141,6 @@ class DragonAPI(object):
 
     def getDebugStats(self):
         return self.post('/api/getDebugStats')
+
+    def streamLogs(self):
+        return self.get_stream('/stream/logs')
