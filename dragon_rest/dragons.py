@@ -49,17 +49,17 @@ class DragonAPI(object):
         Check if the specified host is a Dragon based on simple heuristic.
         """
         try:
-            r = requests.head('http://{}' +
-                              '/static/media/logo-inverse.74ec0f24.png'
-                              .format(host), timeout=timeout)
+            r = requests.head('http://{}'.format(host) +
+                              '/static/media/logo-inverse.74ec0f24.png',
+                              timeout=timeout)
             if r.status_code == 200 and r.headers['Content-Type'] == \
                     'image/png' and r.headers['Content-Length'] == '11506':
                 return True
             elif r.status_code == 404:
-                r = requests.get('http://{}/'.format(host), timeout=1)
+                r = requests.get('http://{}/'.format(host), timeout=timeout)
                 if r.status_code == 200 and 'DragonMint' in r.body:
                     return True
-        except requests.exceptions.Timeout:
+        except requests.exceptions.RequestException as e:
             pass
         return False
 
