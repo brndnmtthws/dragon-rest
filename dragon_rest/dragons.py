@@ -5,8 +5,8 @@ from urllib import parse
 
 
 class DragonAPI(object):
-    u"""
-    DragonMint T1 API wrapper 🐉.
+    """
+    DragonMint T1 API wrapper.
 
     The official documentation for the API is avaiable at:
     https://halongmining.com/api/
