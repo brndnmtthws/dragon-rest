@@ -1,11 +1,15 @@
+"""DragonAPI is a Python wrapper for the DragonMint T1."""
 import requests
 import json
 from urllib import parse
 
 
 class DragonAPI(object):
-    """
-    DragonMint T1 API wrapper
+    u"""
+    DragonMint T1 API wrapper 🐉.
+
+    The official documentation for the API is avaiable at:
+    https://halongmining.com/api/
 
     Example::
 
@@ -19,6 +23,7 @@ class DragonAPI(object):
         r = api.summary()
         print(r)
         # now you're in the big leagues, boye
+
     """
 
     def __init__(self,
@@ -27,9 +32,7 @@ class DragonAPI(object):
                  password='dragonadmin',
                  timeout=15,
                  jwt=None):
-        """
-        Create and authenticate an API client.
-        """
+        """Create and authenticate an API client."""
         self.base_url = "http://{}".format(host)
         self.username = username
         self.password = password
@@ -40,21 +43,27 @@ class DragonAPI(object):
 
     @staticmethod
     def is_dragon(host, timeout=1):
+        """
+        Check if host is a dragon.
+
+        Check if the specified host is a Dragon based on simple heuristic.
+        """
         try:
-            r = requests.head('http://{}/static/media/logo-inverse.74ec0f24.png'
+            r = requests.head('http://{}' +
+                              '/static/media/logo-inverse.74ec0f24.png'
                               .format(host), timeout=timeout)
             if r.status_code == 200 and r.headers['Content-Type'] == \
                     'image/png' and r.headers['Content-Length'] == '11506':
                 return True
             elif r.status_code == 404:
-                r = requests.get('http://{}/'.format(ip), timeout=1)
+                r = requests.get('http://{}/'.format(host), timeout=1)
                 if r.status_code == 200 and 'DragonMint' in r.body:
-                        return True
-        except:
+                    return True
+        except requests.exceptions.Timeout:
             pass
         return False
 
-    def post(self, path, data=None):
+    def __post(self, path, data=None):
         response = requests.post(
             parse.urljoin(self.base_url, path),
             headers={'Authorization': 'Bearer ' + self.jwt},
@@ -63,7 +72,7 @@ class DragonAPI(object):
         response.raise_for_status()
         return response.json()
 
-    def get_stream(self, path):
+    def __get_stream(self, path):
         response = requests.get(
             parse.urljoin(self.base_url, path),
             headers={'Authorization': 'Bearer ' + self.jwt},
@@ -73,6 +82,7 @@ class DragonAPI(object):
         return response
 
     def auth(self):
+        """Authenticate with the miner and obtain a JSON web token (JWT)."""
         response = requests.post(
             parse.urljoin(self.base_url, '/api/auth'),
             timeout=self.timeout,
@@ -83,13 +93,21 @@ class DragonAPI(object):
         return json
 
     def summary(self):
-        return self.post('/api/summary')
+        """Fetch DEVS, POOLS and Fan Speed from the cgminer API."""
+        return self.__post('/api/summary')
 
     def overview(self):
-        return self.post('/api/overview')
+        """
+        Fetch miner overview.
+
+        Fetch miner type, hardware information, network information
+        and versions of the miner
+        """
+        return self.__post('/api/overview')
 
     def pools(self):
-        return self.post('/api/pools')
+        """Receive the configured pools of the miner."""
+        return self.__post('/api/pools')
 
     def updatePools(self,
                     pool1,
@@ -101,32 +119,35 @@ class DragonAPI(object):
                     pool3=None,
                     username3=None,
                     password3=None):
-        return self.post('/api/pools',
-                         data={
-                             'Pool1': pool1,
-                             'UserName1': username1,
-                             'Password1': password1,
-                             'Pool2': pool2,
-                             'UserName2': username2,
-                             'Password2': password2,
-                             'Pool3': pool3,
-                             'UserName3': username3,
-                             'Password3': password3,
-                         })
+        """Change the pools of the miner. This call will restart cgminer."""
+        return self.__post('/api/pools',
+                           data={
+                               'Pool1': pool1,
+                               'UserName1': username1,
+                               'Password1': password1,
+                               'Pool2': pool2,
+                               'UserName2': username2,
+                               'Password2': password2,
+                               'Pool3': pool3,
+                               'UserName3': username3,
+                               'Password3': password3,
+                           })
 
     def updatePassword(self,
                        user,
                        currentPassword,
                        newPassword):
-        return self.post('/api/updatePassword',
-                         data={
-                             'user': user,
-                             'currentPassword': currentPassword,
-                             'newPassword': newPassword
-                         })
+        """Change the password of a user."""
+        return self.__post('/api/updatePassword',
+                           data={
+                               'user': user,
+                               'currentPassword': currentPassword,
+                               'newPassword': newPassword
+                           })
 
     def network(self):
-        return self.post('/api/network')
+        """Get the current network settings."""
+        return self.__post('/api/network')
 
     def updateNetwork(self,
                       dhcp='dhcp',
@@ -134,49 +155,66 @@ class DragonAPI(object):
                       netmask=None,
                       gateway=None,
                       dns=None):
-        return self.post('/api/updateNetwork',
-                         data={
-                             'dhcp': dhcp,
-                             'ipaddress': ipaddress,
-                             'netmask': netmask,
-                             'gateway': gateway,
-                             'dns': json.dumps(dns)
-                         })
+        """Change the current network settings."""
+        return self.__post('/api/updateNetwork',
+                           data={
+                               'dhcp': dhcp,
+                               'ipaddress': ipaddress,
+                               'netmask': netmask,
+                               'gateway': gateway,
+                               'dns': json.dumps(dns)
+                           })
 
     def type(self):
-        return self.post('/api/type')
+        """Return the type of the miner."""
+        return self.__post('/api/type')
 
     def reboot(self):
-        return self.post('/api/reboot')
+        """Reboot the miner."""
+        return self.__post('/api/reboot')
 
     def poweroff(self):
-        return self.post('/api/poweroff')
+        """Power Off the Miner."""
+        return self.__post('/api/poweroff')
 
     def restartCgMiner(self):
-        return self.post('/api/restartCgMiner')
+        """Restart cgminer."""
+        return self.__post('/api/restartCgMiner')
 
     def factoryReset(self):
-        return self.post('/api/factoryReset')
+        """Remove all user settings and reboot the miner."""
+        return self.__post('/api/factoryReset')
 
     def getAutoTune(self):
-        return self.post('/api/getAutoTune')
+        """Return cgminer auto-tune mode."""
+        return self.__post('/api/getAutoTune')
 
     def getAutoTuneStatus(self):
-        return self.post('/api/getAutoTuneStatus')
+        """Return cgminer Auto-Tune status."""
+        return self.__post('/api/getAutoTuneStatus')
 
     def setAutoTune(self, autotune):
-        return self.post('/api/setAutoTune',
-                         data={'autotune': autotune})
+        """Set cgminer to use or not embedded auto-tune functionality."""
+        return self.__post('/api/setAutoTune',
+                           data={'autotune': autotune})
 
     def upgradeDownload(self, url):
-        return self.post('/upgrade/download',
-                         data={'url': url})
+        """Upgrade the firmware of the miner with a URL of the update file."""
+        return self.__post('/upgrade/download',
+                           data={'url': url})
 
     def getLatestFirmwareVersion(self):
-        return self.post('/api/getLatestFirmwareVersion')
+        """Return the latest version available of the miner."""
+        return self.__post('/api/getLatestFirmwareVersion')
 
     def getDebugStats(self):
-        return self.post('/api/getDebugStats')
+        """
+        Get debug status of miner.
+
+        Return the cgminer stats of each board and each chip of the miner.
+        """
+        return self.__post('/api/getDebugStats')
 
     def streamLogs(self):
-        return self.get_stream('/stream/logs')
+        """Return systemd-journald logs in chunked packages."""
+        return self.__get_stream('/stream/logs')

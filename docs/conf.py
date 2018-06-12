@@ -23,11 +23,8 @@ project = 'dragon_rest'
 copyright = '2018, Brenden Matthews'
 author = 'Brenden Matthews'
 
-# The short X.Y version
-version = ''
-# The full version, including alpha/beta/rc tags
-release = ''
-autosummary_generate = True
+version = '0.0.1'
+release = '0.0.1'
 
 # -- General configuration ---------------------------------------------------
 
@@ -49,6 +46,7 @@ autoapi_type = 'python'
 autoapi_dirs = ['../dragon_rest']
 autoapi_file_pattern = '*.py'
 autoapi_options = ['members', 'undoc-members', 'private-members']
+autoapi_include_summaries = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -172,4 +170,3 @@ html_context = {
     "github_version": "master", # Version
     "conf_py_path": "/docs/", # Path in the checkout to the docs root
 }
-
