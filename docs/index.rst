@@ -31,6 +31,8 @@ Write the Python codes
   print(r)
   # now you're in the big leagues, boye
 
+For more details on the API, take a look at :func:`~dragons.DragonAPI`.
+
 Reference
 ---------
 
