@@ -4,12 +4,32 @@ from urllib import parse
 
 
 class DragonAPI(object):
+    """
+    DragonMint T1 API wrapper
+
+    Example::
+
+        from dragon_rest.dragons import DragonAPI
+
+        dragon_host = '10.0.0.1'
+        api = DragonAPI(dragon_host,
+                        username='admin',
+                        password='dragonadmin')
+
+        r = api.summary()
+        print(r)
+        # now you're in the big leagues, boye
+    """
+
     def __init__(self,
                  host,
                  username='admin',
                  password='dragonadmin',
                  timeout=15,
                  jwt=None):
+        """
+        Create and authenticate an API client.
+        """
         self.base_url = "http://{}".format(host)
         self.username = username
         self.password = password
