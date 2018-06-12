@@ -154,3 +154,11 @@ def test_getDebugStats(host, jwt):
 #     r = api.streamLogs()
 #     for line in r.iter_lines():
 #         print(line)
+
+@vcr.use_cassette()
+def test_is_dragon(host):
+    is_dragon = DragonAPI.is_dragon(host, timeout=1)
+    is_not_dragon = DragonAPI.is_dragon('127.0.0.1', timeout=1)
+
+    assert is_dragon
+    assert not is_not_dragon

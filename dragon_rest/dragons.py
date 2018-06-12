@@ -18,6 +18,22 @@ class DragonAPI(object):
         if not self.jwt:
             self.auth()
 
+    @staticmethod
+    def is_dragon(host, timeout=1):
+        try:
+            r = requests.head('http://{}/static/media/logo-inverse.74ec0f24.png'
+                              .format(host), timeout=timeout)
+            if r.status_code == 200 and r.headers['Content-Type'] == \
+                    'image/png' and r.headers['Content-Length'] == '11506':
+                return True
+            elif r.status_code == 404:
+                r = requests.get('http://{}/'.format(ip), timeout=1)
+                if r.status_code == 200 and 'DragonMint' in r.body:
+                        return True
+        except:
+            pass
+        return False
+
     def post(self, path, data=None):
         response = requests.post(
             parse.urljoin(self.base_url, path),
