@@ -27,4 +27,6 @@ print(r)
 
 ## Reference
 
-For details on the API, see: https://halongmining.com/api/
+API documentation: https://dragon-rest.readthedocs.io/
+
+For details on the DragonMint API, see: https://halongmining.com/api/
