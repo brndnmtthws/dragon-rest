@@ -120,7 +120,7 @@ class DragonAPI(object):
                     username3=None,
                     password3=None):
         """Change the pools of the miner. This call will restart cgminer."""
-        return self.__post('/api/pools',
+        return self.__post('/api/updatePools',
                            data={
                                'Pool1': pool1,
                                'UserName1': username1,
