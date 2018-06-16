@@ -9,7 +9,7 @@ vcr = vcr.VCR(
 
 @fixture
 def jwt():
-    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEcmFnb25NaW50IiwiaWF0IjoxNTI4NjQzOTYwLCJleHAiOjE1Mjg2NjU1NjAsInVzZXIiOiJhZG1pbiJ9.rm9Ll81v5pVmlHQCEyFqoeb6TnJSqH66lM1-izK_NoQ'
+    return 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEcmFnb25NaW50IiwiaWF0IjoxNTI5MTg2NjIxLCJleHAiOjE1MjkyMDgyMjEsInVzZXIiOiJhZG1pbiJ9.SWPJ3vPPziK_2OXk7a2QfmF0NvPwTZ6-r54dQzoYWoI'
 
 
 @fixture

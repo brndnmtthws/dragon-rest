@@ -11,11 +11,11 @@ interactions:
     method: POST
     uri: http://10.1.0.25/api/auth
   response:
-    body: {string: '{"success":true,"jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEcmFnb25NaW50IiwiaWF0IjoxNTI4NjQzOTYwLCJleHAiOjE1Mjg2NjU1NjAsInVzZXIiOiJhZG1pbiJ9.rm9Ll81v5pVmlHQCEyFqoeb6TnJSqH66lM1-izK_NoQ"}'}
+    body: {string: '{"success":true,"jwt":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJEcmFnb25NaW50IiwiaWF0IjoxNTI5MTg2NjY0LCJleHAiOjE1MjkyMDgyNjQsInVzZXIiOiJhZG1pbiJ9.SQjJ3zsd0quoNh9_19n2xr-eZ4o0Aj6I6Oo3_sImX-A"}'}
     headers:
       Connection: [keep-alive]
       Content-Type: [application/json]
-      Date: ['Sun, 10 Jun 2018 15:19:20 GMT']
+      Date: ['Sat, 16 Jun 2018 22:04:24 GMT']
       Server: [nginx/1.12.2]
       X-Powered-By: [PHP/7.2.4]
     status: {code: 200, message: OK}

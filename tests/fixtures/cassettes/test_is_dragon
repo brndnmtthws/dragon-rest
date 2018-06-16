@@ -16,7 +16,7 @@ interactions:
       Connection: [keep-alive]
       Content-Length: ['11506']
       Content-Type: [image/png]
-      Date: ['Tue, 12 Jun 2018 22:32:04 GMT']
+      Date: ['Sat, 16 Jun 2018 22:04:39 GMT']
       ETag: ['"5abc0f0e-2cf2"']
       Expires: ['Thu, 31 Dec 2037 23:55:55 GMT']
       Last-Modified: ['Wed, 28 Mar 2018 21:54:22 GMT']
