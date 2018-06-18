@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dragon-rest",
-    version="0.1.0",
+    version="0.1.1",
     author="Brenden Matthews",
     author_email="brenden@diddyinc.com",
     description="Python wrapper for DragonMint T1 REST API",
