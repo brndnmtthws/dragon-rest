@@ -27,8 +27,9 @@ Write the Python codes
                   username='admin',
                   password='dragonadmin')
 
-  r = api.summary()
+  r = api.summary() # get summary
   print(r)
+  api.upgradeUpload('t1_20180515_060842.swu') # upgrade firmware
   # now you're in the big leagues, boye
 
 For more details on the API, take a look at :func:`~dragons.DragonAPI`.
