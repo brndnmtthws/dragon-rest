@@ -59,7 +59,7 @@ class DragonAPI(object):
                 r = requests.get('http://{}/'.format(host), timeout=timeout)
                 if r.status_code == 200 and 'DragonMint' in r.body:
                     return True
-        except requests.exceptions.RequestException as e:
+        except requests.exceptions.RequestException:
             pass
         return False
 
@@ -70,6 +70,12 @@ class DragonAPI(object):
             timeout=self.timeout,
             data=data)
         response.raise_for_status()
+        if not response.json()['success'] and \
+            'token' in response.json() and \
+                response.json()['token'] == 'expired':
+            # refresh the token, retry
+            self.auth()
+            return self.__post(path, data)
         return response.json()
 
     def __get_stream(self, path):
@@ -79,6 +85,12 @@ class DragonAPI(object):
             stream=True,
             timeout=self.timeout)
         response.raise_for_status()
+        if not response.json()['success'] and \
+            'token' in response.json() and \
+                response.json()['token'] == 'expired':
+            # refresh the token, retry
+            self.auth()
+            return self.__get_stream(path)
         return response
 
     def auth(self):
