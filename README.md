@@ -4,6 +4,8 @@ Python wrapper for DragonMint T1 REST API
 
 If you use Halong Mining's DragonMint T1, and would like to interact with it programmatically using Python, then look no further! I have implemented the full HTTP REST API for your enjoyment and pleasure.
 
+![Dragon at rest](/resting-dragon.png?raw=true)
+
 ## Quickstart
 
 ### Install pip package
