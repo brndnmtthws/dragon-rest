@@ -70,13 +70,34 @@ class DragonAPI(object):
             timeout=self.timeout,
             data=data)
         response.raise_for_status()
-        if not response.json()['success'] and \
-            'token' in response.json() and \
-                response.json()['token'] == 'expired':
-            # refresh the token, retry
-            self.auth()
-            return self.__post(path, data)
-        return response.json()
+        try:
+            if not response.json()['success'] and \
+                'token' in response.json() and \
+                    response.json()['token'] == 'expired':
+                # refresh the token, retry
+                self.auth()
+                return self.__post(path, data)
+            return response.json()
+        except ValueError:
+            return response
+
+    def __post_files(self, path, files):
+        response = requests.post(
+            parse.urljoin(self.base_url, path),
+            headers={'Authorization': 'Bearer ' + self.jwt},
+            timeout=self.timeout,
+            files=files)
+        response.raise_for_status()
+        try:
+            if not response.json()['success'] and \
+                'token' in response.json() and \
+                    response.json()['token'] == 'expired':
+                # refresh the token, retry
+                self.auth()
+                return self.__post_files(path, files)
+            return response.json()
+        except ValueError:
+            return response
 
     def __get_stream(self, path):
         response = requests.get(
@@ -209,6 +230,12 @@ class DragonAPI(object):
         """Set cgminer to use or not embedded auto-tune functionality."""
         return self.__post('/api/setAutoTune',
                            data={'autotune': autotune})
+
+    def upgradeUpload(self, file):
+        """Upgrade the firmware of the miner."""
+        files = {'upfile': open(file, 'rb')}
+        return self.__post_files('/upgrade/upload',
+                                 files=files)
 
     def upgradeDownload(self, url):
         """Upgrade the firmware of the miner with a URL of the update file."""
