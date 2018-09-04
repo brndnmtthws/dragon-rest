@@ -119,7 +119,7 @@ class DragonAPI(object):
         response = requests.post(
             parse.urljoin(self.base_url, '/api/auth'),
             timeout=self.timeout,
-            data={'username': 'admin', 'password': 'dragonadmin'})
+            data={'username': self.username, 'password': self.password})
         response.raise_for_status()
         json = response.json()
         self.jwt = json['jwt']
