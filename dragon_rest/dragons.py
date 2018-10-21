@@ -34,7 +34,7 @@ class DragonAPI(object):
                  host,
                  username='admin',
                  password='dragonadmin',
-                 timeout=15,
+                 timeout=60,
                  jwt=None):
         """Create and authenticate an API client."""
         self.base_url = "http://{}".format(host)
