@@ -6,7 +6,11 @@ from urllib import parse
 
 class DragonAPI(object):
     """
-    DragonMint T1 API wrapper.
+    DragonMint/Innosilicon API wrapper.
+
+    This wrapper should work with both DragonMint and Innosilicon branded
+    miners. If you have problems with the API, please open GitHub issue
+    accordingly.
 
     The official documentation for the API is avaiable at:
     https://halongmining.com/api/
@@ -22,7 +26,7 @@ class DragonAPI(object):
 
         r = api.summary()
         print(r)
-        # now you're in the big leagues, boye
+        # now you're in the big leagues, boye 😉
 
     """
 
@@ -46,18 +50,15 @@ class DragonAPI(object):
         """
         Check if host is a dragon.
 
-        Check if the specified host is a Dragon based on simple heuristic.
+        Check if the specified host is a dragon based on simple heuristic.
+        The code simply checks if particular strings are in the index page.
+        It should work for DragonMint or Innosilicon branded miners.
         """
         try:
-            r = requests.head('http://{}'.format(host) +
-                              '/static/media/logo-inverse.74ec0f24.png',
-                              timeout=timeout)
-            if r.status_code == 200 and r.headers['Content-Type'] == \
-                    'image/png' and r.headers['Content-Length'] == '11506':
-                return True
-            elif r.status_code == 404:
-                r = requests.get('http://{}/'.format(host), timeout=timeout)
-                if r.status_code == 200 and 'DragonMint' in r.body:
+            r = requests.get('http://{}/'.format(host), timeout=timeout)
+            if r.status_code == 200:
+                if '<title>DragonMint</title>' in r.text or \
+                        '<title>AsicMiner</title>' in r.text:
                     return True
         except requests.exceptions.RequestException:
             pass
