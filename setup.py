@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dragon-rest",
-    version="0.1.1",
+    version="0.2.0",
     author="Brenden Matthews",
     author_email="brenden@diddyinc.com",
-    description="Python wrapper for DragonMint T1 REST API",
+    description="Python wrapper for DragonMint/Innosilicon REST API",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/brndnmtthws/dragon-rest",
