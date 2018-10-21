@@ -6,20 +6,29 @@ interactions:
       Accept-Encoding: ['gzip, deflate']
       Connection: [keep-alive]
       User-Agent: [python-requests/2.18.4]
-    method: HEAD
-    uri: http://10.1.0.25/static/media/logo-inverse.74ec0f24.png
+    method: GET
+    uri: http://10.1.0.25/
   response:
-    body: {string: ''}
+    body: {string: '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta
+        name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta
+        name="theme-color" content="#000000"><link rel="manifest" href="/manifest.json"><link
+        rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="css/bootstrap.min.css"><link
+        rel="stylesheet" href="css/fontawesome-all.min.css"><link rel="stylesheet"
+        href="google_fonts/font.css"><title>DragonMint</title><link href="/static/css/main.d5bf973c.css"
+        rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run
+        this app.</noscript><div id="root"></div><script src="js/jquery.min.js"></script><script
+        src="js/bootstrap.min.js"></script><script></script><script type="text/javascript"
+        src="/static/js/main.cfed636c.js"></script></body></html>'}
     headers:
       Accept-Ranges: [bytes]
       Cache-Control: [max-age=315360000]
       Connection: [keep-alive]
-      Content-Length: ['11506']
-      Content-Type: [image/png]
-      Date: ['Sat, 16 Jun 2018 22:04:39 GMT']
-      ETag: ['"5abc0f0e-2cf2"']
+      Content-Length: ['811']
+      Content-Type: [text/html]
+      Date: ['Sun, 21 Oct 2018 16:50:01 GMT']
+      ETag: ['"5aee4f16-32b"']
       Expires: ['Thu, 31 Dec 2037 23:55:55 GMT']
-      Last-Modified: ['Wed, 28 Mar 2018 21:54:22 GMT']
+      Last-Modified: ['Sun, 06 May 2018 00:40:54 GMT']
       Server: [nginx/1.12.2]
     status: {code: 200, message: OK}
 version: 1
