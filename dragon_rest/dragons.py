@@ -123,6 +123,8 @@ class DragonAPI(object):
             data={'username': self.username, 'password': self.password})
         response.raise_for_status()
         json = response.json()
+        if 'jwt' not in json:
+            raise ValueError("Not authorized: didn't receive token, check username or password.")
         self.jwt = json['jwt']
         return json
 
