@@ -1,7 +1,9 @@
 sudo: false
 language: python
+dist: xenial
 python:
 - '3.6'
+- '3.7'
 deploy:
   provider: pypi
   user: brndnmtthws
