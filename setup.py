@@ -3,6 +3,16 @@ import setuptools
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+requires = [
+    'requests>=2.20.1',
+]
+
+test_requires = [
+    'pytest-cov',
+    'vcrpy>=1.12.0',
+    'pytest>=3.6.1',
+]
+
 setuptools.setup(
     name="dragon-rest",
     version="0.2.3",
@@ -18,4 +28,10 @@ setuptools.setup(
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
     ),
+    python_requires=">=3.5",
+    install_requires=requires,
+    tests_require=test_requires,
+    extras_require={
+        'test': test_requires,
+    },
 )
