@@ -15,7 +15,7 @@ test_requires = [
 
 setuptools.setup(
     name="dragon-rest",
-    version="0.2.3",
+    version="0.2.4",
     author="Brenden Matthews",
     author_email="brenden@diddyinc.com",
     description="Python wrapper for DragonMint/Innosilicon REST API",
