@@ -229,7 +229,7 @@ class DragonAPI(object):
         """Return cgminer Auto-Tune status."""
         return self.__post('/api/getAutoTuneStatus')
 
-    def setAutoTune(self, autotune, level):
+    def setAutoTune(self, autotune, level=2):
         """Set cgminer to use or not embedded auto-tune functionality."""
         return self.__post('/api/setAutoTune',
                            data={'autotune': autotune, 'level': level})
