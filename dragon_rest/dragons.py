@@ -140,7 +140,11 @@ class DragonAPI(object):
         and versions of the miner
         """
         return self.__post('/api/overview')
-
+    
+    def errors(self):
+        """Returns errors"""
+        return self.__post('/api/getErrorDetail')
+    
     def pools(self):
         """Receive the configured pools of the miner."""
         return self.__post('/api/pools')
